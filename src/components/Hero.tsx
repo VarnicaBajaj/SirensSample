@@ -51,14 +51,14 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
-        <div className="text-center">
+        <div className="hero text-center">
           {/* Revolving Ocean Vinyl Disc Logo */}
           <div className="relative inline-block mb-12">
-            <div className="ocean-vinyl-disc pearl-glow animate-vinyl-spin">
+            <div className="ocean-vinyl-disc pearl-glow">
               <div className="ocean-logo-container">
-                <img 
-                  src="/SirensLogo.jpeg" 
-                  alt="Sirens Logo" 
+                <img
+                  src="/SirensLogo.jpeg"
+                  alt="Sirens Logo"
                   className="w-full h-full object-cover"
                 />
               </div>
