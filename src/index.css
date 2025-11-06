@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme Variables */
+:root {
+  --bg: #0a0a0f;
+  --txt: #e9fdfb;
+  --neon1: #00ffa8;
+  --neon2: #9b5cff;
+  --neon3: #ff4da6;
+  --glow: var(--neon1);
+}
+
+/* Base Styles */
+body {
+  background: #0a0a0f;
+  color: var(--txt);
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth Sections */
+section {
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Neon Text - Video-like soft bloom */
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 40px var(--glow),
+    0 0 80px var(--glow),
+    0 0 100px var(--glow),
+    0 0 140px var(--glow),
+    0 0 200px var(--glow);
+  animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Flicker for hero title */
+.neon-text.flicker {
+  animation: neonPulse 1.5s ease-in-out infinite alternate, flicker 2.4s infinite;
+}
+
+/* Neon Buttons */
+.neon-btn {
+  background: rgba(20, 20, 32, 0.7);
+  border: 2px solid rgba(155, 92, 255, 0.6);
+  color: #fff;
+  box-shadow:
+    0 0 6px rgba(155, 92, 255, 0.6),
+    0 0 18px rgba(155, 92, 255, 0.4),
+    inset 0 0 12px rgba(0, 255, 168, 0.15);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-btn:hover {
+  box-shadow:
+    0 0 10px rgba(255, 77, 166, 0.8),
+    0 0 28px rgba(155, 92, 255, 0.6),
+    0 0 56px rgba(0, 255, 168, 0.5),
+    inset 0 0 16px rgba(0, 255, 168, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Neon Cards */
+.neon-card {
+  background: rgba(20, 20, 32, 0.7);
+  border: 1px solid rgba(155, 92, 255, 0.4);
+  color: #fff;
+  box-shadow:
+    0 0 6px rgba(155, 92, 255, 0.6),
+    0 0 18px rgba(155, 92, 255, 0.4),
+    inset 0 0 12px rgba(0, 255, 168, 0.15);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  position: relative;
+  isolation: isolate;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.neon-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(155, 92, 255, 0.35), rgba(255, 77, 166, 0.15) 60%, transparent 70%);
+  filter: blur(14px);
+  border-radius: inherit;
+}
+
+.neon-card:hover {
+  box-shadow:
+    0 0 10px rgba(255, 77, 166, 0.8),
+    0 0 28px rgba(155, 92, 255, 0.6),
+    0 0 56px rgba(0, 255, 168, 0.5),
+    inset 0 0 16px rgba(0, 255, 168, 0.25);
+  transform: translateY(-4px);
+}
+
+/* Pulse Animation */
+@keyframes neonPulse {
+  0% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px var(--glow),
+      0 0 80px var(--glow),
+      0 0 100px var(--glow),
+      0 0 140px var(--glow),
+      0 0 200px var(--glow);
+  }
+  100% {
+    text-shadow:
+      0 0 6px #fff,
+      0 0 16px #fff,
+      0 0 24px #fff,
+      0 0 60px var(--glow),
+      0 0 110px var(--glow),
+      0 0 150px var(--glow),
+      0 0 190px var(--glow),
+      0 0 260px var(--glow);
+  }
+}
+
+/* Flicker Micro Variation */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.85;
+  }
+}
+
+/* Glow Color Swaps */
+.glow-soft {
+  --glow: var(--neon2);
+}
+
+.glow-strong {
+  --glow: var(--neon3);
+}
+
+/* Data hook for scroll animation */
+[data-animate="glow"] {
+  animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Wave Divider */
+.wave-divider {
+  position: relative;
+  height: 80px;
+  overflow: hidden;
+}
+
+.wave-divider svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wave-divider .wave {
+  transition: all 0.8s ease-in-out;
+}
+
+.wave-divider .wave:nth-child(2) {
+  opacity: 0.7;
+}
+
+.wave-divider .wave:nth-child(3) {
+  opacity: 0.5;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: clamp(16px, 2vw, 24px);
+  margin-bottom: 32px;
+  opacity: 0.9;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 20, 32, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00ffa8, #9b5cff);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #9b5cff, #ff4da6);
+}
+
+/* Input Styles */
+input, textarea {
+  transition: all 0.6s ease;
+  background: rgba(20, 20, 32, 0.8);
+  border: 2px solid rgba(155, 92, 255, 0.3);
+  color: var(--txt);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(0, 255, 168, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 168, 0.2);
+  background: rgba(20, 20, 32, 0.95);
+}
+
+/* Ocean Cards Fallback (from old theme) */
+.ocean-card {
+  background: rgba(20, 20, 32, 0.7);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 255, 168, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.6s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ocean-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(0, 255, 168, 0.15),
+    transparent);
+  transition: left 0.8s ease;
+}
+
+.ocean-card:hover::before {
+  left: 100%;
+}
+
+.ocean-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 60px rgba(0, 255, 168, 0.2),
+    0 0 40px rgba(255, 77, 166, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 255, 168, 0.6);
+}
+
+/* Ocean Buttons Fallback */
+.ocean-button {
+  background: linear-gradient(135deg,
+    #00ffa8 0%,
+    #9b5cff 50%,
+    #ff4da6 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 4px 25px rgba(0, 255, 168, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.6s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.ocean-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent);
+  transition: left 0.8s ease;
+}
+
+.ocean-button:hover::before {
+  left: 100%;
+}
+
+.ocean-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 40px rgba(255, 107, 53, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Gradient Text */
+.ocean-text-gradient {
+  background: linear-gradient(135deg,
+    #00ffa8 0%,
+    #9b5cff 25%,
+    #ff4da6 50%,
+    #00ffa8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+}
+
+/* Siren Card */
+.siren-card {
+  background: rgba(20, 20, 32, 0.8);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 255, 168, 0.2);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.6s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.siren-card:hover {
+  border-color: rgba(0, 255, 168, 0.6);
+  box-shadow:
+    0 15px 60px rgba(155, 92, 255, 0.25),
+    0 0 30px rgba(0, 255, 168, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-6px);
+}
+
+/* Pearl Glow */
+.pearl-glow {
+  box-shadow: 0 0 20px rgba(0, 255, 168, 0.4);
+  transition: box-shadow 0.6s ease;
+}
+
+.pearl-glow:hover {
+  box-shadow: 0 0 40px rgba(155, 92, 255, 0.7);
+}
+
+/* Fade In on Scroll */
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
+/* Animation - Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.fade-in-content {
+  animation: slideUp 0.8s ease-in-out;
+}
